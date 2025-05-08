@@ -6,11 +6,13 @@ import partytown from "@astrojs/partytown";
 import pagefind from "astro-pagefind";
 import icon from "astro-icon";
 import tailwindcss from "@tailwindcss/vite";
+import github from "@astrojs/github-pages";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://astrology-monolingual.vercel.app",
+  site: "https://jvinnick.github.io/veridian",
   trailingSlash: "always",
+  adapter: github(),
   vite: {
     plugins: [tailwindcss()],
   },
