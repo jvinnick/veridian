@@ -6,13 +6,12 @@ import partytown from "@astrojs/partytown";
 import pagefind from "astro-pagefind";
 import icon from "astro-icon";
 import tailwindcss from "@tailwindcss/vite";
-import github from "@astrojs/github-pages";
 
-// https://astro.build/config
 export default defineConfig({
-  site: "https://jvinnick.github.io/veridian",
+  site: "https://jvinnick.github.io/veridian", // 👈 keep this as your GitHub Pages URL
+  output: "static", // ✅ THIS is the important part
   trailingSlash: "always",
-  adapter: github(),
+
   vite: {
     plugins: [tailwindcss()],
   },
@@ -20,7 +19,6 @@ export default defineConfig({
     prefetchAll: true,
     defaultStrategy: "viewport",
   },
-
   image: {
     remotePatterns: [
       {
@@ -29,11 +27,9 @@ export default defineConfig({
       },
     ],
   },
-
   markdown: {
     remarkPlugins: [remarkModifiedTime],
   },
-
   integrations: [
     mdx(),
     sitemap(),
@@ -44,7 +40,6 @@ export default defineConfig({
         debug: false,
       },
     }),
-
     icon({
       include: {
         tabler: ["*"],
