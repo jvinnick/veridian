@@ -8,8 +8,9 @@ import icon from "astro-icon";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  site: "https://jvinnick.github.io/veridian", // 👈 keep this as your GitHub Pages URL
-  output: "static", // ✅ THIS is the important part
+  site: "https://jvinnick.github.io/veridian",
+  base: "/veridian",                            
+  output: "static",
   trailingSlash: "always",
 
   vite: {
