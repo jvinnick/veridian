@@ -1,0 +1,31 @@
+---
+import { getCollection } from "astro:content";
+import PostCard from "./CommonCard.astro";
+
+const { currentCategory, currentSlug } = Astro.props;
+
+const allPosts = await getCollection("posts");
+const relatedPosts = allPosts
+  .filter(
+    (post) =>
+      post.data.category.includes(currentCategory) && post.id !== currentSlug,
+  )
+  .sort(
+    (a, b) =>
+      new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
+  )
+  .slice(0, 3);
+---
+
+{
+  relatedPosts.length > 0 && (
+    <div class="mt-8">
+      <h2 class="text-2xl font-bold">Related Posts</h2>
+      <div class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {relatedPosts.map((post) => (
+          <PostCard post={post} />
+        ))}
+      </div>
+    </div>
+  )
+}
